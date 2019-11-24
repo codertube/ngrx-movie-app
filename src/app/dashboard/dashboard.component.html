@@ -1,0 +1,21 @@
+<div class="alert alert-danger" *ngIf="error$ | async as error">
+  <h2>ERROR</h2>
+  {{ error.message }}
+</div>
+
+
+<div class="progress mb-4 mt-5" *ngIf="loading$ | async">
+  <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%">
+    Loading movies...
+  </div>
+</div>
+
+<button type="button" (click)='randomRating()'>Random Rating</button>
+
+<div *ngFor="let movie of movies$ | async ">
+  <div class="movie">
+    <span>{{ movie.name }}</span>
+    <app-rating [movie]='movie' [rating]='movie.rating' (ratingClick)='ratingComponentClick($event)'></app-rating>
+  </div>
+
+</div>
